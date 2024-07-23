@@ -3,10 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "morseley",
+    "morse code",
+    "morsecode"
+  ],
+  "author": "Hoccyy",
   "license": "ISC",
-  "description": ""
+  "description": "A lightweight morse code translator package that can encode and decode morscode quickly.",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
