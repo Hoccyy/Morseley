@@ -1,13 +1,19 @@
 const {decodeMorse} = require('../index');
 
-test('decode should properly decode the morse code cipher', () => {
+test('decodeMorse should properly decode the morse code cipher', () => {
     expect(decodeMorse(' - . ... - .---- ', true)).toBe('test1');
 });
 
-test('decode should properly decode the morse code cipher', () => {
+test('decodeMorse should properly decode the morse code cipher', () => {
     expect(decodeMorse(' - . ... - .---- ...-- ')).toBe('TEST13');
 });
 
-test('decode should properly decode the morse code cipher', () => {
+test('decodeMorse should properly decode the morse code cipher', () => {
     expect(decodeMorse(' - . ... - .---- ...-- ', true)).toBe('test13');
+});
+
+test('decodeMorse should throw an error upon receiving invalid characters', () => {
+    expect(() => {
+        decodeMorse('....... .._', false)
+    }).toThrow('Invalid');
 });

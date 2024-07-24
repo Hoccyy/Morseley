@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.95% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/23</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/10</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/21</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -155,7 +155,8 @@
 <a name='L90'></a><a href='#L90'>90</a>
 <a name='L91'></a><a href='#L91'>91</a>
 <a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,30 +219,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">38x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">62x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -309,44 +311,45 @@ const reversedMorseDictionary = Object.fromEntries(
     Object.entries(morseDictionary).map(([key, value]) =&gt; [value, key])
 );
 &nbsp;
-function encode(text, multiSpacing=false) {
+function encodeMorse(text, multiSpacing=false) {
     let result = '';
-    while (!multiSpacing &amp;&amp; text.includes('  ')) {
-<span class="cstat-no" title="statement not covered" >        text = text.replace('  ', ' ')</span>
+    
+    while (multiSpacing === false &amp;&amp; text.includes('  ')) {
+        console.log('ran');
+        text = text.replace('  ', ' ').trim();
     }
-    text = text.trim()
     
     for (let i = 0; i &lt; text.length; i++) {
         result += morseDictionary[text[i].toUpperCase()] + ' ';
     }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (String(result).includes(undefined)) {
-<span class="cstat-no" title="statement not covered" >        throw new Error('Invalid characters detected, only input a-z, 0-9, and symbols such as !@#,$ %^&amp;*()-')</span>
+    if (String(result).includes(undefined)) {
+        throw new Error('Invalid character detected, only input a-z, 0-9, and symbols such as !@#,$ %^&amp;*()-');
     }
     return result.trim();
 }
 &nbsp;
-function decode(text, lowerCase = false) {
+function decodeMorse(text, lowerCase = false) {
     let result = '';
     let charSplit = text.trim().split(' ')
 &nbsp;
     for (let m = 0; m &lt; charSplit.length; m ++) {
         result += reversedMorseDictionary[charSplit[m]];
     }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (String(result).includes(undefined)) {
-<span class="cstat-no" title="statement not covered" >        throw new Error('Invalid characters detected, check your spacing or refer to the international morse code alphabet')</span>
+    if (String(result).includes(undefined)) {
+        throw new Error('Invalid characters detected, check your spacing or refer to the international morse code alphabet')
     }
     result = lowerCase ? (result.toLowerCase()) : result
     return result.trim()
 }
 &nbsp;
-module.exports = {encode, decode}</pre></td></tr></table></pre>
+module.exports = {encodeMorse, decodeMorse}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-23T01:03:08.432Z
+                at 2024-07-24T02:08:54.430Z
             </div>
         <script src="prettify.js"></script>
         <script>

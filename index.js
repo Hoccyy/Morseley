@@ -62,16 +62,17 @@ const reversedMorseDictionary = Object.fromEntries(
 
 function encodeMorse(text, multiSpacing=false) {
     let result = '';
-    while (!multiSpacing && text.includes('  ')) {
-        text = text.replace('  ', ' ')
+    
+    while (multiSpacing === false && text.includes('  ')) {
+        console.log('ran');
+        text = text.replace('  ', ' ').trim();
     }
-    text = text.trim()
     
     for (let i = 0; i < text.length; i++) {
         result += morseDictionary[text[i].toUpperCase()] + ' ';
     }
     if (String(result).includes(undefined)) {
-        throw new Error('Invalid characters detected, only input a-z, 0-9, and symbols such as !@#,$ %^&*()-')
+        throw new Error('Invalid character detected, only input a-z, 0-9, and symbols such as !@#,$ %^&*()-');
     }
     return result.trim();
 }
