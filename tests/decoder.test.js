@@ -9,7 +9,15 @@ test('decodeMorse should properly decode the morse code cipher', () => {
 });
 
 test('decodeMorse should properly decode the morse code cipher', () => {
-    expect(decodeMorse(' - . ... - .---- ...-- ', true)).toBe('test13');
+    expect(decodeMorse(' - . ... - .---- ...--', true)).toBe('test13');
+});
+
+test('decodeMorse should properly decode the morse code cipher', () => {
+    expect(decodeMorse('.-- .... . -. //// - .... . ', true)).toBe('when the');
+});
+
+test('decodeMorse should properly decode the morse code cipher', () => {
+    expect(decodeMorse('.-- .... . -. / / // - .... . ', true)).toBe('when the');
 });
 
 test('decodeMorse should throw an error upon receiving invalid characters', () => {

@@ -5,6 +5,10 @@ test('encodeMorse should properly decode the morse code cipher', () => {
 });
 
 test('encodeMorse should properly decode the morse code cipher', () => {
+    expect(encodeMorse('')).toBe('');
+});
+
+test('encodeMorse should properly decode the morse code cipher', () => {
     expect(encodeMorse('syMbols,  test!!?', true)).toBe('... -.-- -- -... --- .-.. ... --..-- / / - . ... - -.-.-- -.-.-- ..--..');
 });
 
